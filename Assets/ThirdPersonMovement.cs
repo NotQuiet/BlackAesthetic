@@ -6,16 +6,14 @@ namespace Eli
 {
     public class ThirdPersonMovement : MonoBehaviour
     {
-        public CharacterController controller;
+        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private Transform _cam;
 
-        public Transform cam;
+        [SerializeField] private float _speed = 6f;
+        [SerializeField] private float _turnSmoothTime = 0.1f;
 
-        public float speed = 6f;
+        private float _turnSmoothVelocity;
 
-        public float turnSmoothTime = 0.1f;
-        private float turnSmoothVelocity;
-
-        // Update is called once per frame
         void Update()
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
@@ -25,12 +23,12 @@ namespace Eli
 
             if (direction.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _cam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+                _characterController.Move(moveDirection.normalized * _speed * Time.deltaTime);
             }
         }
     }

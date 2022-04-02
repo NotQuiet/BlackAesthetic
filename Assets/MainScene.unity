@@ -1628,7 +1628,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1915324686}
+  cam: {fileID: 34641627}
   speed: 6
+  turnSmoothTime: 0.1
 --- !u!4 &1915324685
 Transform:
   m_ObjectHideFlags: 0

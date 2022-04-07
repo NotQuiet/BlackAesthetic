@@ -11,6 +11,7 @@ public class ThirdPersonMovement : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
 
     [SerializeField] private float _speed = 6f;
+    [SerializeField] private float _runMultiply = 1.5f;
     [SerializeField] private float _turnSmoothTime = 0.1f;
     [SerializeField] private float _jumpHight = 2f;
 
@@ -19,7 +20,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private float _gravity = -9.81f;
     private float _turnSmoothVelocity;
     private float _startSpeed;
-    private float _groundDistance = 0.4f;
+    private float _groundDistance = 0.1f;
     private bool _isGrounded;
 
 
@@ -35,7 +36,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _speed *= 1.5f;
+            _speed *= _runMultiply;
         }
         else if(Input.GetKeyUp(KeyCode.LeftShift))
         {

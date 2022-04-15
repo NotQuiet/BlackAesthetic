@@ -14,10 +14,12 @@ namespace Eli
 
         //Controllers
         private GameManagerController _gameManagerController;
+        private StateController _stateController;
 
         private void Awake()
         {
             Debug.Log("StartPoint awake");
+
             CreateModels();
             CreateControllers();
             InjectToControllers();
@@ -33,6 +35,7 @@ namespace Eli
         private void CreateControllers()
         {
             _gameManagerController = new GameManagerController();
+            _stateController = new StateController();
         }
 
         private void InjectToMenus()
@@ -48,6 +51,7 @@ namespace Eli
         private void InjectToControllers()
         {
             DependencyInjection(_gameManagerController);
+            DependencyInjection(_stateController);
         }    
 
         public void DependencyInjection(object view)
@@ -56,12 +60,10 @@ namespace Eli
             {
                 gameManagerController.AssignController(_gameManagerController);
             }
+            else if(view is IRequireController<StateController> stateController)
+            {
+                stateController.AssignController(_stateController);
+            }
         }
-
-        private void SetMainScene()
-        {
-            _gameManagerController.LoadScene("MainScene");
-        }
-
     }
 }

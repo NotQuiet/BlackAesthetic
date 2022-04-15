@@ -11,11 +11,6 @@ namespace Eli
     {
         private GameManagerController _gameManagerController;
 
-        private void Start()
-        {
-            _gameManagerController.StartGame();
-        }
-
         public void AssignController(GameManagerController controller)
         {
             _gameManagerController = controller;

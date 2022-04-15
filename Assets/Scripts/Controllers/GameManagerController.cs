@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace Eli
@@ -13,14 +14,5 @@ namespace Eli
     {
         public GameManagerController() { }
 
-        public void StartGame()
-        {
-            Debug.Log("StartGame2");
-        }
-
-        public void LoadScene(string sceneName)
-        {
-            Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        }
     }
 }

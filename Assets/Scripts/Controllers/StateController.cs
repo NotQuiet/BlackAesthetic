@@ -41,7 +41,7 @@ namespace Eli
         }
 
 
-        private async Task UnloadScene(string sceneName)
+        private void UnloadScene(string sceneName)
         {
             SceneManager.UnloadSceneAsync(sceneName);
         }

@@ -60,7 +60,8 @@ namespace Eli
             {
                 gameManagerController.AssignController(_gameManagerController);
             }
-            else if(view is IRequireController<StateController> stateController)
+
+            if(view is IRequireController<StateController> stateController)
             {
                 stateController.AssignController(_stateController);
             }

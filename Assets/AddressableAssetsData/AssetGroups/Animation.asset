@@ -10,16 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Animation
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Animation
   m_Data:
     m_SerializedData: []
-  m_GUID: ce8f9e41c0182744883be74ade533ff7
-  m_SerializeEntries: []
+  m_GUID: 7457c3802e24cbb45b075bd6b8153964
+  m_SerializeEntries:
+  - m_GUID: cfea2f58b0ef7d041a511a395615db92
+    m_Address: Assets/Testing/Animations
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 35ff2306409e36c449278a43814500d4, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 59e572a43d5bc794caa1f35d80eba701, type: 2}
-    - {fileID: 11400000, guid: 67c76a21aa07870489ae94d00554b557, type: 2}
+    - {fileID: 11400000, guid: 40fc5d2907596fc48afa9abfea7da4e5, type: 2}
+    - {fileID: 11400000, guid: ca178725f97ae754cb18cd56de6ad874, type: 2}

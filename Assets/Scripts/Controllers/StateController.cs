@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace Eli
 {
     public class StateController
     {
-        private string _currentScene = "GameMenu";
+        private Dictionary<string, AsyncOperationHandle> _handles;
+        public Dictionary<string, AsyncOperationHandle> Handles { get { return _handles; } private set { _handles = value; } }
 
+
+        private string _currentScene;
         public string CurrentScene { get { return _currentScene; } private set { _currentScene = value; } }
+
+
+        //public string CurrentScene { get { return _currentScene; } private set { _currentScene = value; } }
 
         public async void ChangeState(GameState state)
         {
@@ -29,22 +36,42 @@ namespace Eli
                     Debug.Log("Default case");
                     break;
             }
+
+            UnloadUnusedScenes();
         }
 
         private async Task LoadScene(string sceneName)
         {
-            var asyncOperation = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            await asyncOperation.Task;   
+            var handle = Handles.FirstOrDefault(x => x.Key == sceneName).Value;
 
-            UnloadScene(CurrentScene);
+            await handle.Task;   
 
             CurrentScene = sceneName;
         }
 
 
-        private void UnloadScene(string sceneName)
+        private void UnloadUnusedScenes()
         {
-            SceneManager.UnloadSceneAsync(sceneName);
+            foreach(var scene in Handles)
+            {
+                if(scene.Key == CurrentScene)
+                {
+                    continue;
+                }
+                else
+                {
+                    Addressables.UnloadSceneAsync(scene.Value);
+                }
+                Debug.Log($"Scene \"{scene.Key}\" was unload.");
+            }
+
+            
+        }
+
+        public void CreateDictionary()
+        {
+            Handles.Add("GameMenu", Addressables.LoadSceneAsync("GameMenu", LoadSceneMode.Additive));
+            Handles.Add("TestField", Addressables.LoadSceneAsync("TestField", LoadSceneMode.Additive));
         }
     }
 }

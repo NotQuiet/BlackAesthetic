@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Eli
 {
     internal class StartPoint : MonoBehaviour
     {
+
         //LoadingProviders
         private PauseScreenProvider _pauseScreenProvider;
 
@@ -32,16 +34,22 @@ namespace Eli
 
             CreateModels();
             CreateControllers();
+            CreateInputs();
+            CreateSceneDictionary();
+            CreateProviders();
             InjectToControllers();
             InjectToMenus();
-            CreateInputs();
         }
 
-        private async void Start()
+        private void Start()
         {
-            var loadTest = await _pauseScreenProvider.Load();
-            Thread.Sleep(5000);
-            _pauseScreenProvider.Unload();
+
+
+        }
+
+        private void CreateSceneDictionary()
+        {
+            _stateController.CreateDictionary();
         }
 
         private void CreateProviders()

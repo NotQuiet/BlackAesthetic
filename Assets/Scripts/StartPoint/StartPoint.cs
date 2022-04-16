@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -10,13 +11,13 @@ namespace Eli
     internal class StartPoint : MonoBehaviour
     {
         //LoadingProviders
-        private PauseMenuProvider _pauseMenuProvider;
+        private PauseScreenProvider _pauseScreenProvider;
 
         //Inputs
 
 
         //Asset loader
-        private LocalAssetLoader _localAssetLoader;
+
 
         //Models
 
@@ -25,7 +26,7 @@ namespace Eli
         private GameManagerController _gameManagerController;
         private StateController _stateController;
 
-        private async void Awake()
+        private void Awake()
         {
             Debug.Log("StartPoint awake");
 
@@ -34,14 +35,18 @@ namespace Eli
             InjectToControllers();
             InjectToMenus();
             CreateInputs();
-
-            var loadTest = await _pauseMenuProvider.Load();
-
         }
-        
+
+        private async void Start()
+        {
+            var loadTest = await _pauseScreenProvider.Load();
+            Thread.Sleep(5000);
+            _pauseScreenProvider.Unload();
+        }
+
         private void CreateProviders()
         {
-            _pauseMenuProvider = new PauseMenuProvider();
+            _pauseScreenProvider = new PauseScreenProvider();
         }
 
         private void CreateInputs()
@@ -51,7 +56,7 @@ namespace Eli
 
         private void CreateModels()
         {
-            _localAssetLoader = new LocalAssetLoader();
+
         }
 
         private void CreateControllers()

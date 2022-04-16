@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace Eli
 {
-    public class PauseMenuProvider : LocalAssetLoader
+    public class PauseScreenProvider : LocalAssetLoader
     {
-        public Task<PauseModel> Load()
+        public Task<PauseScreen> Load()
         {
             Debug.Log("We are in provider");
-            return LoadInternal<PauseModel>("PauseMenu");
+            return LoadInternal<PauseScreen>("PauseMenu");
         }
 
         public void Unload()

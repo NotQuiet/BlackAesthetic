@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 namespace Eli
 {
-    public class PauseModel : MonoBehaviour
+    public class PauseScreen : MonoBehaviour
     {
         [SerializeField] private Button _test;
 
-        PauseMenuProvider _pauseProvider;
+        PauseScreenProvider _pauseProvider;
 
         private void OnEnable()
         {

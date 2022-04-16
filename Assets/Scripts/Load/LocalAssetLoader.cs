@@ -15,7 +15,7 @@ namespace Eli
         private GameObject _cachedObject;
 
         // Load and add to cache asset, async, with Addressables (protected)
-        protected async Task<T> LoadInternal<T> (string assetID)
+        protected async Task<T> LoadInternal<T>(string assetID)
         {
             var handle = Addressables.InstantiateAsync(assetID);
             _cachedObject = await handle.Task;
@@ -24,6 +24,8 @@ namespace Eli
             {
                 throw new NullReferenceException($"Object of type {typeof(T)} is null on attempt to load it from Addressables"); 
             }
+
+            Debug.Log("_cachedObject is not null - name:" + _cachedObject);
 
             return load;
         }

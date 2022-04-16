@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Assets/Testing/Prefabs
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: f58eebb30ddd37d4a87da36383d4d86d
-    m_Address: PauseMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 35ff2306409e36c449278a43814500d4, type: 2}
   m_SchemaSet:

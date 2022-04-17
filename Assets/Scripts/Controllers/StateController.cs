@@ -14,15 +14,15 @@ namespace Eli
         private string _currentScene = "GameMenu";
 
         public string CurrentScene { get { return _currentScene; } private set { _currentScene = value; } }
-        public void ChangeState(GameState state)
+        public async Task ChangeStateAsync(GameState state)
         {
             switch (state)
             {
                 case GameState.GameMenu:
-                    LoadScene("GameMenu");
+                    await LoadScene("GameMenu");
                     break;
                 case GameState.TestField:
-                    LoadScene("TestField");
+                    await LoadScene("TestField");
                     break;
                     default:
                     Debug.Log("Default case");

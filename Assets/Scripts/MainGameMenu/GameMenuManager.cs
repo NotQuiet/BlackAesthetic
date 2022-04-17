@@ -20,7 +20,7 @@ namespace Eli
 
         private void OnStartGameClick()
         {
-            _stateController.ChangeState(GameState.TestField);
+            _ = _stateController.ChangeStateAsync(GameState.TestField);
         }
 
         public void AssignController(StateController controller)

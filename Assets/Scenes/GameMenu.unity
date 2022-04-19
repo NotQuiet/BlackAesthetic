@@ -1321,6 +1321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startGame: {fileID: 2013690722}
+  _settingsButton: {fileID: 1160410569}
+  _exitGameButton: {fileID: 2043695877}
+  _settingsWindow: {fileID: 1773086265}
+  _exitConfirmationWindow: {fileID: 1212163460}
 --- !u!1 &1160410567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1900,7 @@ GameObject:
   - component: {fileID: 1773086262}
   - component: {fileID: 1773086264}
   - component: {fileID: 1773086263}
+  - component: {fileID: 1773086265}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -1961,6 +1966,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773086261}
   m_CullTransparentMesh: 1
+--- !u!225 &1773086265
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773086261}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1858038965
 GameObject:
   m_ObjectHideFlags: 0

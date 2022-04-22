@@ -74,7 +74,8 @@ public class SimpleController_UsingPlayerInput : MonoBehaviour
         var scaledMoveSpeed = moveSpeed * Time.deltaTime;
         // For simplicity's sake, we just keep movement in a single plane here. Rotate
         // direction according to world Y rotation of player.
-        var move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
+        var move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * 
+            new Vector3(direction.x, 0, direction.y);
         transform.position += move * scaledMoveSpeed;
     }
 

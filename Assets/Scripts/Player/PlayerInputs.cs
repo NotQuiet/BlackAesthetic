@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System;
 
 public class PlayerInputs : MonoBehaviour
 {
@@ -10,18 +11,24 @@ public class PlayerInputs : MonoBehaviour
     private bool _isOnGround = true;
     private bool _isDefaultEli = true;
 
-    private Vector3 m_Move;
+    private Vector2 m_Move;
 
     private void Update()
     {
-        var keyboard = Keyboard.current;
-        var mouse = Mouse.current;
+        Move(m_Move);
+    }
 
-        if (keyboard == null && mouse == null)
+    private void Move(Vector2 direction)
+    {
+        if (direction.sqrMagnitude < 0.01)
             return;
 
+        var scaledMoveSpeed = moveSpeed * Time.deltaTime;
 
+        var move = Quaternion.Euler(0, transform.eulerAngles.y, 0) *
+            new Vector3(direction.x, 0, direction.y);
 
+        transform.position += move * scaledMoveSpeed;
     }
 
     private void Jump()
@@ -46,7 +53,7 @@ public class PlayerInputs : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        m_Move = context.ReadValue<Vector3>();
+        m_Move = context.ReadValue<Vector2>();
     }
 
     #endregion

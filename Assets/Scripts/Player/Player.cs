@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Input;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private InputMaster controls;
-
-    private void Awake()
+    private void FixedUpdate()
     {
-        controls.Player.Jump.performed += contex => OnJump();
+        var keyboard = Keyboard.current;
     }
 
-    private void OnJump()
-    {
-        Debug.Log("Jump");
-    }
 }

@@ -73,7 +73,7 @@ public class PlayerInputs : MonoBehaviour
         lookingDirection.y = 0f;
 
         if (_move.ReadValue<Vector2>().sqrMagnitude > 0.1f && lookingDirection.sqrMagnitude > 0.1f)
-            this._rigidbody.rotation = Quaternion.LookRotation(lookingDirection , Vector3.up);
+            this._rigidbody.rotation = Quaternion.LookRotation(lookingDirection, Vector3.up);
         else
             this._rigidbody.angularVelocity = Vector3.zero;
     }

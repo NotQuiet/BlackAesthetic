@@ -44,11 +44,6 @@ public class PlayerInputs : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
-    }
-
-    private void Movement()
-    {
         _forceDirection += _move.ReadValue<Vector2>().x * GetCameraRight(_playerThirdPersonCamera) * _movementSpeed;
         _forceDirection += _move.ReadValue<Vector2>().y * GetCameraForward(_playerThirdPersonCamera) * _movementSpeed;
 
@@ -57,7 +52,7 @@ public class PlayerInputs : MonoBehaviour
 
         if (_rigidbody.velocity.y < 0f)
         {
-            _rigidbody.velocity -= Vector3.down * Physics.gravity.y * Time.deltaTime;
+            _rigidbody.velocity -= Vector3.down * Physics.gravity.y * Time.deltaTime * 2;
         }
 
         Vector3 horizontalVelocity = _rigidbody.velocity;
@@ -68,6 +63,11 @@ public class PlayerInputs : MonoBehaviour
         }
 
         SetLookingDirection();
+    }
+
+    private void Movement()
+    {
+        
     }
 
     private void SetLookingDirection()

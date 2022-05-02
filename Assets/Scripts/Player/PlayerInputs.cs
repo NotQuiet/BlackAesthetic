@@ -8,8 +8,6 @@ public class PlayerInputs : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayers;
 
-    private bool _isNormalEli = true;
-
     // input fields
     private InputMaster _playerActionsAsset;
     private InputAction _move;
@@ -23,7 +21,7 @@ public class PlayerInputs : MonoBehaviour
 
     private Vector3 _forceDirection = Vector3.zero;
 
-    [SerializeField] private float _maxSpeed; //think it is not what i want
+    [SerializeField] private float _maxSpeed; // im think that is not what actualy needed
 
     private void Awake()
     {
@@ -46,20 +44,25 @@ public class PlayerInputs : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Movement();
+    }
+
+    private void Movement()
+    {
         _forceDirection += _move.ReadValue<Vector2>().x * GetCameraRight(_playerThirdPersonCamera) * _movementSpeed;
         _forceDirection += _move.ReadValue<Vector2>().y * GetCameraForward(_playerThirdPersonCamera) * _movementSpeed;
 
         _rigidbody.AddForce(_forceDirection, ForceMode.Impulse);
         _forceDirection = Vector3.zero;
 
-        if(_rigidbody.velocity.y < 0f)
+        if (_rigidbody.velocity.y < 0f)
         {
-            _rigidbody.velocity -= Vector3.down * Physics.gravity.y * Time.deltaTime; 
+            _rigidbody.velocity -= Vector3.down * Physics.gravity.y * Time.deltaTime;
         }
 
         Vector3 horizontalVelocity = _rigidbody.velocity;
         horizontalVelocity.y = 0f;
-        if(horizontalVelocity.sqrMagnitude > _maxSpeed * _maxSpeed)
+        if (horizontalVelocity.sqrMagnitude > _maxSpeed * _maxSpeed)
         {
             _rigidbody.velocity = horizontalVelocity.normalized * _maxSpeed + Vector3.up * _rigidbody.velocity.y;
         }
@@ -96,7 +99,7 @@ public class PlayerInputs : MonoBehaviour
     {
         Debug.Log("IsGrounded(): " + IsGrounded());
 
-        if(IsGrounded() && _isNormalEli)
+        if(IsGrounded())
         {
             _forceDirection += Vector3.up * _jumpForce;
         }

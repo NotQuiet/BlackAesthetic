@@ -32,12 +32,12 @@ namespace Eli
 
         private async Task LoadScene(string sceneName)
         {
-            var asyncOperation = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            var asyncOperation = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Single);
             await asyncOperation.Task;   
 
-            UnloadScene(CurrentScene);
+            //UnloadScene(CurrentScene);
 
-            CurrentScene = sceneName;
+            //CurrentScene = sceneName;
         }
 
 
